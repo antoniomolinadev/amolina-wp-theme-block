@@ -115,26 +115,6 @@ function amolina_wp_theme_block_content_width() {
 add_action( 'after_setup_theme', 'amolina_wp_theme_block_content_width', 0 );
 
 /**
- * Register widget area.
- *
- * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
- */
-function amolina_wp_theme_block_widgets_init() {
-	register_sidebar(
-		array(
-			'name'          => esc_html__( 'Sidebar', 'amolina-wp-theme-block' ),
-			'id'            => 'sidebar-1',
-			'description'   => esc_html__( 'Add widgets here.', 'amolina-wp-theme-block' ),
-			'before_widget' => '<section id="%1$s" class="widget %2$s">',
-			'after_widget'  => '</section>',
-			'before_title'  => '<h2 class="widget-title">',
-			'after_title'   => '</h2>',
-		)
-	);
-}
-add_action( 'widgets_init', 'amolina_wp_theme_block_widgets_init' );
-
-/**
  * Enqueue scripts and styles.
  */
 function amolina_wp_theme_block_scripts() {
@@ -148,6 +128,11 @@ function amolina_wp_theme_block_scripts() {
 	}
 }
 add_action( 'wp_enqueue_scripts', 'amolina_wp_theme_block_scripts' );
+
+/**
+ * Adding widgets
+ */
+require get_template_directory() . '/inc/template-widgets.php';
 
 /**
  * Implement the Custom Header feature.

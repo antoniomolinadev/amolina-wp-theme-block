@@ -18,7 +18,7 @@ function amolina_wp_theme_block_body_classes( $classes ) {
 	}
 
 	// Adds a class of no-sidebar when there is no sidebar present.
-	if ( ! is_active_sidebar( 'sidebar-1' ) ) {
+	if ( ! is_active_sidebar( 'sidebar-footer' ) ) {
 		$classes[] = 'no-sidebar';
 	}
 
@@ -35,3 +35,17 @@ function amolina_wp_theme_block_pingback_header() {
 	}
 }
 add_action( 'wp_head', 'amolina_wp_theme_block_pingback_header' );
+
+/**
+ * Add Hero pattern
+ */
+add_action( 'init', 'amolina_wp_theme_block_register_patterns' );
+
+function amolina_wp_theme_block_register_patterns() {
+	register_block_pattern( 'amolina-wp-theme-block/hero', array(
+		'title'      => __( 'Hero', 'amolina-wp-theme-block' ),
+		'categories' => array( 'featured' ),
+		'source'     => 'theme',
+		'content'    => '<!-- Block pattern goes here. -->'
+	) );
+}
